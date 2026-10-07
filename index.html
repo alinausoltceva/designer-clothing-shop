@@ -34,8 +34,8 @@
                 </ul>
             </nav>
 
-            <button type="button" class="cart-button">
-                Корзина
+            <button class="cart-button">
+                Корзина (<span class="cart-count">0</span>)
             </button>
 
         </div>
@@ -163,7 +163,7 @@
 
                 <div class="product-grid" id="product-grid">
 
-                    <article class="product-card">
+                    <article class="product-card" data-product-id="1">
                         <div class="product-image">
                             <img src="images/products/flowers-blouse-01.jpg"
                                  alt="Блуза для девочки">
@@ -178,17 +178,19 @@
                                 6 000 ₽
                             </p>
 
-                            <button type="button" class="add-to-cart">
-                                В корзину
-                            </button>
+                            <div class="cart-control">
+                                <button class="add-to-cart" type="button">
+                                    В корзину
+                                </button>
+                            </div>
                         </div>
                     </article>
 
 
-                    <article class="product-card">
+                    <article class="product-card" data-product-id="2">
                         <div class="product-image">
                             <img src="images/products/flowers-trousers-01.jpg"
-                                 alt="Блуза для девочки">
+                                 alt="<Брюки для девочки">
                         </div>
 
                         <div class="product-info">
@@ -200,14 +202,16 @@
                                 8 000 ₽
                             </p>
 
-                            <button type="button" class="add-to-cart">
-                                В корзину
-                            </button>
+                            <div class="cart-control">
+                                <button class="add-to-cart" type="button">
+                                    В корзину
+                                </button>
+                            </div>
                         </div>
                     </article>
 
 
-                    <article class="product-card">
+                    <article class="product-card" data-product-id="3">
                         <div class="product-image">
                             <img src="images/products/flowers-blouse-02.jpg"
                                  alt="Блуза для девочки">
@@ -222,17 +226,19 @@
                                 6 000 ₽
                             </p>
 
-                            <button type="button" class="add-to-cart">
-                                В корзину
-                            </button>
+                            <div class="cart-control">
+                                <button class="add-to-cart" type="button">
+                                    В корзину
+                                </button>
+                            </div>
                         </div>
                     </article>
 
 
-                    <article class="product-card">
+                    <article class="product-card" data-product-id="4">
                         <div class="product-image">
                             <img src="images/products/flowers-leggings-01.jpg"
-                                 alt="Блуза для девочки">
+                                 alt="Велосипедки для девочки">
                         </div>
 
                         <div class="product-info">
@@ -244,14 +250,16 @@
                                 5 000 ₽
                             </p>
 
-                            <button type="button" class="add-to-cart">
-                                В корзину
-                            </button>
+                            <div class="cart-control">
+                                <button class="add-to-cart" type="button">
+                                    В корзину
+                                </button>
+                            </div>
                         </div>
                     </article>
 
 
-                    <article class="product-card">
+                    <article class="product-card" data-product-id="5">
                         <div class="product-image">
                             <img src="images/products/flowers-blouse-03.jpg"
                                  alt="Блуза для девочки">
@@ -266,17 +274,19 @@
                                 6 000 ₽
                             </p>
 
-                            <button type="button" class="add-to-cart">
-                                В корзину
-                            </button>
+                            <div class="cart-control">
+                                <button class="add-to-cart" type="button">
+                                    В корзину
+                                </button>
+                            </div>
                         </div>
                     </article>
 
 
-                    <article class="product-card">
+                    <article class="product-card" data-product-id="6">
                         <div class="product-image">
                             <img src="images/products/flowers-overalls-01.jpg"
-                                 alt="Блуза для девочки">
+                                 alt="Комбинезон для девочки">
                         </div>
 
                         <div class="product-info">
@@ -288,17 +298,19 @@
                                 9 000 ₽
                             </p>
 
-                            <button type="button" class="add-to-cart">
-                                В корзину
-                            </button>
+                            <div class="cart-control">
+                                <button class="add-to-cart" type="button">
+                                    В корзину
+                                </button>
+                            </div>
                         </div>
                     </article>
 
 
-                    <article class="product-card">
+                    <article class="product-card" data-product-id="7">
                         <div class="product-image">
                             <img src="images/products/54-42-dress-01.jpg"
-                                 alt="Блуза для девочки">
+                                 alt="Платье женское">
                         </div>
 
                         <div class="product-info">
@@ -310,9 +322,11 @@
                                 12 000 ₽
                             </p>
 
-                            <button type="button" class="add-to-cart">
-                                В корзину
-                            </button>
+                            <div class="cart-control">
+                                <button class="add-to-cart" type="button">
+                                    В корзину
+                                </button>
+                            </div>
                         </div>
                     </article>
 
@@ -389,7 +403,9 @@
         </div>
     </footer>
 
-    <script src="./js/products.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
 
 </body>
 </html>
