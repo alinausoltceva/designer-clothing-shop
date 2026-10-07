@@ -1,4 +1,21 @@
-﻿let cart = [];
+﻿function loadCart() {
+    const savedCart = localStorage.getItem("cart");
+
+    if (!savedCart) {
+        return [];
+    }
+
+    return JSON.parse(savedCart);
+}
+
+
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+
+let cart = loadCart();
+
 
 function addToCart(product) {
     const cartItem = cart.find((item) => {
@@ -13,7 +30,10 @@ function addToCart(product) {
             quantity: 1
         });
     }
+
+    saveCart();
 }
+
 
 function decreaseQuantity(productId) {
     const cartItem = cart.find((item) => {
@@ -31,17 +51,22 @@ function decreaseQuantity(productId) {
             return item.product.id !== productId;
         });
     }
+
+    saveCart();
 }
+
 
 function getCart() {
     return cart;
 }
+
 
 function getCartItem(productId) {
     return cart.find((item) => {
         return item.product.id === productId;
     });
 }
+
 
 function getCartCount() {
     return cart.reduce((total, item) => {
