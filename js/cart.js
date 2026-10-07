@@ -73,3 +73,16 @@ function getCartCount() {
         return total + item.quantity;
     }, 0);
 }
+
+
+function getCartTotal() {
+    return cart.reduce((total, item) => {
+        return total + item.product.price * item.quantity;
+    }, 0);
+}
+
+
+function clearCart() {
+    cart = [];
+    saveCart();
+}

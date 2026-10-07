@@ -402,6 +402,135 @@
 
         </div>
     </footer>
+    <!-- Модальное окно корзины -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-modal-overlay"></div>
+
+        <div class="cart-modal-content">
+            <button class="cart-modal-close"
+                    type="button"
+                    aria-label="Закрыть корзину">
+                ×
+            </button>
+
+            <!-- Экран корзины -->
+            <section class="cart-screen" id="cart-screen">
+                <div class="cart-modal-header">
+                    <p class="section-label">Корзина</p>
+                    <h2>Ваш заказ</h2>
+                </div>
+
+                <div class="cart-items" id="cart-items">
+                    <!-- Товары корзины появятся здесь через JavaScript -->
+                </div>
+
+                <div class="cart-empty" id="cart-empty">
+                    <p>Ваша корзина пуста.</p>
+                </div>
+
+                <div class="cart-summary" id="cart-summary">
+                    <div class="cart-summary-row">
+                        <span>Товаров</span>
+                        <span id="cart-total-count">0</span>
+                    </div>
+
+                    <div class="cart-summary-row cart-summary-total">
+                        <span>Итого</span>
+                        <span id="cart-total-price">0 ₽</span>
+                    </div>
+
+                    <button class="checkout-button"
+                            id="checkout-button"
+                            type="button">
+                        Оформить заказ
+                    </button>
+                </div>
+            </section>
+
+
+            <!-- Экран оформления заказа -->
+            <section class="checkout-screen" id="checkout-screen">
+                <div class="cart-modal-header">
+                    <p class="section-label">Оформление заказа</p>
+                    <h2>Данные для доставки</h2>
+                </div>
+
+                <form class="checkout-form" id="checkout-form">
+
+                    <div class="form-field">
+                        <label for="first-name">Имя</label>
+                        <input type="text"
+                               id="first-name"
+                               name="first-name"
+                               required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="last-name">Фамилия</label>
+                        <input type="text"
+                               id="last-name"
+                               name="last-name"
+                               required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="delivery-address">Адрес доставки</label>
+                        <textarea id="delivery-address"
+                                  name="delivery-address"
+                                  rows="3"
+                                  required></textarea>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="phone">Телефон</label>
+                        <input type="tel"
+                               id="phone"
+                               name="phone"
+                               placeholder="+7 (XXX) ХХ-ХХ-ХХ"
+                               pattern="(?:\+7|8)[\s-]?\d{3}[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}"
+                               title="Введите номер телефона в формате +7 (XXX) ХХ-ХХ-ХХ"
+                               required>
+                    </div>
+
+                    <div class="checkout-form-actions">
+                        <button class="checkout-back-button"
+                                id="checkout-back-button"
+                                type="button">
+                            Вернуться в корзину
+                        </button>
+
+                        <button class="create-order-button"
+                                type="submit">
+                            Создать заказ
+                        </button>
+                    </div>
+
+                </form>
+            </section>
+
+
+            <!-- Экран успешного заказа -->
+            <section class="order-success-screen" id="order-success-screen">
+                <div class="order-success">
+                    <p class="section-label">Заказ</p>
+
+                    <h2>Заказ создан!</h2>
+
+                    <p>
+                        Спасибо за заказ.
+                    </p>
+
+                    <button class="return-to-catalog-button"
+                            id="return-to-catalog-button"
+                            type="button">
+                        Вернуться в каталог
+                    </button>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
 
     <script src="js/products.js"></script>
     <script src="js/cart.js"></script>
