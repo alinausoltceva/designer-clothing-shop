@@ -86,11 +86,18 @@ h3 {
     }
 
 .logo {
-    font-family: var(--font-display);
-    font-size: 30px;
-    font-style: italic;
-    line-height: 1;
+    display: flex;
+    align-items: center;
+    width: 58px;
+    height: 58px;
 }
+
+    .logo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
 
 .main-navigation ul {
     display: flex;
@@ -138,11 +145,20 @@ h3 {
 /* Herо */
 
 .hero {
+    position: relative;
     min-height: 650px;
     display: flex;
     align-items: center;
+    overflow: hidden;
     border-bottom: 1px solid var(--color-border);
+    background-image: url("../images/hero.jpg");
+    background-size: cover;
+    background-position: center;
 }
+
+    .hero h1 {
+        color: #d1cdc7;
+    }
 
     .hero .container {
         padding-top: 80px;
@@ -164,9 +180,9 @@ h3 {
     min-height: 50px;
     margin-top: 42px;
     padding: 0 28px;
-    border: 1px solid var(--color-text);
-    background-color: var(--color-text);
-    color: var(--color-background);
+    border: 1px solid #d1cdc7;
+    background-color: #d1cdc7;
+    color: #3f3a35;
     font-size: 12px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -175,7 +191,7 @@ h3 {
 
     .hero-link:hover {
         background-color: transparent;
-        color: var(--color-text);
+        color: #f4f1eb;
     }
 
 
@@ -438,13 +454,29 @@ h3 {
 /* Footer */
 
 .site-footer {
-    padding: 40px 0;
+    padding: 50px 0;
 }
 
-    .site-footer p {
-        color: var(--color-text-muted);
-        font-size: 12px;
-    }
+.footer-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.site-footer p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 13px;
+}
+
+.footer-title {
+    margin: 0 0 12px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
 
 /* Cart modal */
 
