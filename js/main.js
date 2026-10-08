@@ -1,4 +1,4 @@
-﻿const productCards = document.querySelectorAll(".product-card");
+﻿const productGrid = document.querySelector("#product-grid");
 const cartCount = document.querySelector(".cart-count");
 
 const cartModal = document.querySelector("#cart-modal");
@@ -112,6 +112,8 @@ function updateProductCard(card) {
 
 
 function updateAllProductCards() {
+    const productCards = productGrid.querySelectorAll(".product-card");
+
     productCards.forEach((card) => {
         updateProductCard(card);
     });
@@ -122,6 +124,45 @@ function formatPrice(price) {
     return `${price.toLocaleString("ru-RU")} ₽`;
 }
 
+function renderProductCard(product) {
+    const card = document.createElement("article");
+
+    card.className = "product-card";
+    card.dataset.productId = product.id;
+
+    card.innerHTML = `
+        <div class="product-image">
+            <img
+                src="${product.image}"
+                alt="${product.name}"
+            >
+        </div>
+
+        <div class="product-info">
+            <h3 class="product-name">
+                ${product.name}
+            </h3>
+
+            <p class="product-price">
+                ${formatPrice(product.price)}
+            </p>
+
+            <div class="cart-control"></div>
+        </div>
+    `;
+
+    return card;
+}
+
+function renderProducts(productList) {
+    productGrid.innerHTML = "";
+
+    productList.forEach((product) => {
+        const card = renderProductCard(product);
+
+        productGrid.appendChild(card);
+    });
+}
 
 function renderCart() {
     const cart = getCart();
@@ -227,33 +268,36 @@ function showOrderSuccess() {
 }
 
 
-productCards.forEach((card) => {
+productGrid.addEventListener("click", (event) => {
+    const target = event.target;
+    const card = target.closest(".product-card");
+
+    if (!card) {
+        return;
+    }
+
     const productId = Number(card.dataset.productId);
 
-    card.addEventListener("click", (event) => {
-        const target = event.target;
+    if (
+        target.classList.contains("add-to-cart") ||
+        target.classList.contains("quantity-plus")
+    ) {
+        const product = products.find((item) => {
+            return item.id === productId;
+        });
 
-        if (
-            target.classList.contains("add-to-cart") ||
-            target.classList.contains("quantity-plus")
-        ) {
-            const product = products.find((item) => {
-                return item.id === productId;
-            });
-
-            if (product) {
-                addToCart(product);
-                updateProductCard(card);
-                updateCartCount();
-            }
-        }
-
-        if (target.classList.contains("quantity-minus")) {
-            decreaseQuantity(productId);
+        if (product) {
+            addToCart(product);
             updateProductCard(card);
             updateCartCount();
         }
-    });
+    }
+
+    if (target.classList.contains("quantity-minus")) {
+        decreaseQuantity(productId);
+        updateProductCard(card);
+        updateCartCount();
+    }
 });
 
 
@@ -334,8 +378,6 @@ returnToCatalogButton.addEventListener("click", () => {
 });
 
 
-productCards.forEach((card) => {
-    updateProductCard(card);
-});
-
+renderProducts(products);
+updateAllProductCards();
 updateCartCount();
