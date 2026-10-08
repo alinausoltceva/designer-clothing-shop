@@ -261,3 +261,22 @@
 		height: 40px;
 	}
 }
+
+@media (max-width: 700px) {
+	.catalog-controls {
+		gap: 25px;
+		margin: 30px 0 40px;
+	}
+
+	.filter-options {
+		gap: 6px;
+	}
+
+	.filter-option {
+		padding: 9px 14px;
+		font-size: 13px;
+	}
+	.catalog-filter-toggle {
+		margin: 30px 0 20px;
+	}
+}

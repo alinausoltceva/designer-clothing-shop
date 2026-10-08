@@ -157,8 +157,184 @@
                     Одежда
                 </h2>
 
-                <div class="catalog-controls">
-                    <!-- Фильтры каталога будут добавлены позже -->
+                <div class="catalog-filter-toggle">
+                    <button class="filter-toggle-button"
+                            id="filter-toggle-button"
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="catalog-filters">
+                        Фильтры
+                    </button>
+                </div>
+
+                <div class="catalog-controls" id="catalog-filters" hidden>
+
+                    <div class="catalog-filter">
+                        <p class="catalog-filter-label">
+                            Коллекция
+                        </p>
+
+                        <div class="filter-options" id="collection-filter">
+                            <button class="filter-option is-active"
+                                    type="button"
+                                    data-filter="collection"
+                                    data-value="all">
+                                Все
+                            </button>
+
+                            <button class="filter-option"
+                                    type="button"
+                                    data-filter="collection"
+                                    data-value="collection-01">
+                                Цветы империи
+                            </button>
+
+                            <button class="filter-option"
+                                    type="button"
+                                    data-filter="collection"
+                                    data-value="collection-02">
+                                54/42
+                            </button>
+
+                            <button class="filter-option"
+                                    type="button"
+                                    data-filter="collection"
+                                    data-value="collection-03">
+                                Весенний сон
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div class="catalog-filter">
+                        <p class="catalog-filter-label">
+                            Категория
+                        </p>
+
+                        <div class="filter-options filter-options-scroll" id="type-filter">
+                            <button class="filter-option is-active"
+                                    type="button"
+                                    data-filter="type"
+                                    data-value="all">
+                                Все
+                            </button>
+
+                            <button class="filter-option"
+                                    type="button"
+                                    data-filter="type"
+                                    data-value="blouse">
+                                Блузы
+                            </button>
+
+                            <button class="filter-option"
+                                    type="button"
+                                    data-filter="type"
+                                    data-value="trousers">
+                                Брюки
+                            </button>
+
+                            <button class="filter-option"
+                                    type="button"
+                                    data-filter="type"
+                                    data-value="skirt">
+                                Юбки
+                            </button>
+
+                            <button class="filter-option"
+                                    type="button"
+                                    data-filter="type"
+                                    data-value="dress">
+                                Платья
+                            </button>
+
+                            <button class="filter-option"
+                                    type="button"
+                                    data-filter="type"
+                                    data-value="jacket">
+                                Куртки
+                            </button>
+
+                            <button class="filter-option"
+                                    type="button"
+                                    data-filter="type"
+                                    data-value="shorts">
+                                Шорты
+                            </button>
+
+                            <button class="filter-option"
+                                    type="button"
+                                    data-filter="type"
+                                    data-value="leggings">
+                                Велосипедки
+                            </button>
+
+                            <button class="filter-option"
+                                    type="button"
+                                    data-filter="type"
+                                    data-value="overalls">
+                                Комбинезоны
+                            </button>
+
+                            <button class="filter-option"
+                                    type="button"
+                                    data-filter="type"
+                                    data-value="top">
+                                Топы
+                            </button>
+
+                            <button class="filter-option"
+                                    type="button"
+                                    data-filter="type"
+                                    data-value="longsleeve">
+                                Лонгсливы
+                            </button>
+
+                            <button class="filter-option"
+                                    type="button"
+                                    data-filter="type"
+                                    data-value="hoodie">
+                                Худи
+                            </button>
+
+                            <button class="filter-option"
+                                    type="button"
+                                    data-filter="type"
+                                    data-value="sundress">
+                                Сарафаны
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div class="catalog-filter">
+                        <p class="catalog-filter-label">
+                            Для кого
+                        </p>
+
+                        <div class="filter-options" id="category-filter">
+                            <button class="filter-option is-active"
+                                    type="button"
+                                    data-filter="category"
+                                    data-value="all">
+                                Все
+                            </button>
+
+                            <button class="filter-option"
+                                    type="button"
+                                    data-filter="category"
+                                    data-value="women">
+                                Женщины
+                            </button>
+
+                            <button class="filter-option"
+                                    type="button"
+                                    data-filter="category"
+                                    data-value="kids">
+                                Девочки
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="product-grid" id="product-grid">
