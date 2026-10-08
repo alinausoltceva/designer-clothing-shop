@@ -1,6 +1,14 @@
 ﻿const productGrid = document.querySelector("#product-grid");
 const cartCount = document.querySelector(".cart-count");
 
+const paginationPrev = document.querySelector("#pagination-prev");
+const paginationNext = document.querySelector("#pagination-next");
+const paginationPage = document.querySelector("#pagination-page");
+
+const productsPerPage = 8;
+let currentPage = 1;
+let currentProductList = products;
+
 const cartModal = document.querySelector("#cart-modal");
 const cartModalClose = document.querySelector(".cart-modal-close");
 const cartModalOverlay = document.querySelector(".cart-modal-overlay");
@@ -155,14 +163,72 @@ function renderProductCard(product) {
 }
 
 function renderProducts(productList) {
+    currentProductList = productList;
     productGrid.innerHTML = "";
 
-    productList.forEach((product) => {
+    const totalPages = Math.ceil(productList.length / productsPerPage);
+
+    if (totalPages === 0) {
+        paginationPage.textContent = "0/0";
+        paginationPrev.disabled = true;
+        paginationNext.disabled = true;
+        return;
+    }
+
+    if (currentPage > totalPages) {
+        currentPage = totalPages;
+    }
+
+    const startIndex = (currentPage - 1) * productsPerPage;
+    const endIndex = startIndex + productsPerPage;
+
+    const pageProducts = productList.slice(startIndex, endIndex);
+
+    pageProducts.forEach((product) => {
         const card = renderProductCard(product);
 
         productGrid.appendChild(card);
     });
+
+    paginationPage.textContent = `${currentPage}/${totalPages}`;
+
+    paginationPrev.disabled = currentPage === 1;
+    paginationNext.disabled = currentPage === totalPages;
 }
+
+function changePage(page) {
+    currentPage = page;
+
+    renderProducts(currentProductList);
+    updateAllProductCards();
+
+    window.scrollTo({
+        top: document.querySelector("#catalog").offsetTop,
+        behavior: "smooth"
+    });
+}
+
+function resetPagination() {
+    currentPage = 1;
+    renderProducts(currentProductList);
+    updateAllProductCards();
+}
+
+paginationPrev.addEventListener("click", () => {
+    if (currentPage > 1) {
+        changePage(currentPage - 1);
+    }
+});
+
+paginationNext.addEventListener("click", () => {
+    const totalPages = Math.ceil(
+        currentProductList.length / productsPerPage
+    );
+
+    if (currentPage < totalPages) {
+        changePage(currentPage + 1);
+    }
+});
 
 function renderCart() {
     const cart = getCart();

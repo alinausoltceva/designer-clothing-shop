@@ -679,3 +679,45 @@ body.modal-open {
     .order-success p:not(.section-label) {
         margin: 0;
     }
+
+.catalog-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 50px;
+}
+
+.pagination-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border: 1px solid #222;
+    background: transparent;
+    color: #222;
+    font: inherit;
+    cursor: pointer;
+}
+
+    .pagination-arrow:hover {
+        background: #222;
+        color: #fff;
+    }
+
+    .pagination-arrow:disabled {
+        opacity: 0.3;
+        cursor: default;
+    }
+
+        .pagination-arrow:disabled:hover {
+            background: transparent;
+            color: #222;
+        }
+
+.pagination-page {
+    min-width: 45px;
+    text-align: center;
+    font-size: 14px;
+}
