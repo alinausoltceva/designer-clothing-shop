@@ -116,34 +116,58 @@ function formatPrice(price) {
     return `${price.toLocaleString("ru-RU")} ₽`;
 }
 
+
 function renderProductCard(product) {
     const card = document.createElement("article");
     card.className = "product-card";
     card.dataset.productId = product.id;
 
-    card.innerHTML = `
-        <div class="product-image">
-            <img src="${product.image}" alt="${product.name}">
-        </div>
-        <div class="product-info">
-            <h3 class="product-name">${product.name}</h3>
-            <p class="product-price">${formatPrice(product.price)}</p>
-            <div class="cart-control"></div>
-        </div>
-    `;
+    const productImage = document.createElement("div");
+    productImage.className = "product-image";
+
+    const image = document.createElement("img");
+    image.src = product.image;
+    image.alt = product.name;
+
+    productImage.appendChild(image);
+
+    const productInfo = document.createElement("div");
+    productInfo.className = "product-info";
+
+    const productName = document.createElement("h3");
+    productName.className = "product-name";
+    productName.textContent = product.name;
+
+    const productPrice = document.createElement("p");
+    productPrice.className = "product-price";
+    productPrice.textContent = formatPrice(product.price);
+
+    const cartControl = document.createElement("div");
+    cartControl.className = "cart-control";
+
+    productInfo.appendChild(productName);
+    productInfo.appendChild(productPrice);
+    productInfo.appendChild(cartControl);
+
+    card.appendChild(productImage);
+    card.appendChild(productInfo);
+
     return card;
 }
 
 function renderProducts(productList) {
     currentProductList = productList;
-    productGrid.innerHTML = "";
+    productGrid.replaceChildren();
 
     const totalPages = Math.ceil(productList.length / productsPerPage);
 
     if (totalPages === 0) {
-        productGrid.innerHTML = `
-            <p class="catalog-empty">По выбранным параметрам ничего не найдено.</p>
-        `;
+        const emptyMessage = document.createElement("p");
+        emptyMessage.className = "catalog-empty";
+        emptyMessage.textContent = "По выбранным параметрам ничего не найдено.";
+
+        productGrid.appendChild(emptyMessage);
+
         paginationPage.textContent = "0/0";
         paginationPrev.disabled = true;
         paginationNext.disabled = true;
@@ -197,28 +221,56 @@ function updateCartCount() {
     cartCount.textContent = getCartCount();
 }
 
+
 function updateProductCard(card) {
     const productId = Number(card.dataset.productId);
     const cartControl = card.querySelector(".cart-control");
     const cartItem = getCartItem(productId);
 
+    cartControl.replaceChildren();
+
     if (!cartItem) {
-        cartControl.innerHTML = `
-            <button class="add-to-cart" type="button">В корзину</button>
-        `;
+        const addButton = document.createElement("button");
+        addButton.className = "add-to-cart";
+        addButton.type = "button";
+        addButton.textContent = "В корзину";
+
+        cartControl.appendChild(addButton);
         return;
     }
 
-    cartControl.innerHTML = `
-        <div class="cart-control-in-cart">
-            <span class="cart-status">В корзине</span>
-            <div class="quantity-controls">
-                <button type="button" class="quantity-minus">−</button>
-                <span class="quantity-value">${cartItem.quantity}</span>
-                <button type="button" class="quantity-plus">+</button>
-            </div>
-        </div>
-    `;
+    const cartControlInCart = document.createElement("div");
+    cartControlInCart.className = "cart-control-in-cart";
+
+    const cartStatus = document.createElement("span");
+    cartStatus.className = "cart-status";
+    cartStatus.textContent = "В корзине";
+
+    const quantityControls = document.createElement("div");
+    quantityControls.className = "quantity-controls";
+
+    const minusButton = document.createElement("button");
+    minusButton.type = "button";
+    minusButton.className = "quantity-minus";
+    minusButton.textContent = "−";
+
+    const quantityValue = document.createElement("span");
+    quantityValue.className = "quantity-value";
+    quantityValue.textContent = cartItem.quantity;
+
+    const plusButton = document.createElement("button");
+    plusButton.type = "button";
+    plusButton.className = "quantity-plus";
+    plusButton.textContent = "+";
+
+    quantityControls.appendChild(minusButton);
+    quantityControls.appendChild(quantityValue);
+    quantityControls.appendChild(plusButton);
+
+    cartControlInCart.appendChild(cartStatus);
+    cartControlInCart.appendChild(quantityControls);
+
+    cartControl.appendChild(cartControlInCart);
 }
 
 function updateAllProductCards() {
@@ -297,7 +349,7 @@ if (phoneInput) {
 
 function renderCart() {
     const cart = getCart();
-    cartItems.innerHTML = "";
+    cartItems.replaceChildren();
 
     if (cart.length === 0) {
         cartEmpty.hidden = false;
@@ -308,21 +360,56 @@ function renderCart() {
     cartEmpty.hidden = true;
     cartSummary.hidden = false;
 
+
     cart.forEach((item) => {
         const cartItemElement = document.createElement("article");
         cartItemElement.className = "cart-item";
-        cartItemElement.innerHTML = `
-            <div class="cart-item-info"> 
-                <h3>${item.product.name}</h3> 
-                <p class="cart-item-price">${formatPrice(item.product.price)}</p> 
-            </div> 
-            <div class="cart-item-quantity"> 
-                <button type="button" class="cart-item-minus" data-product-id="${item.product.id}">−</button> 
-                <span>${item.quantity}</span> 
-                <button type="button" class="cart-item-plus" data-product-id="${item.product.id}">+</button> 
-            </div> 
-            <div class="cart-item-total">${formatPrice(item.product.price * item.quantity)}</div>
-        `;
+
+        const itemInfo = document.createElement("div");
+        itemInfo.className = "cart-item-info";
+
+        const itemName = document.createElement("h3");
+        itemName.textContent = item.product.name;
+
+        const itemPrice = document.createElement("p");
+        itemPrice.className = "cart-item-price";
+        itemPrice.textContent = formatPrice(item.product.price);
+
+        itemInfo.appendChild(itemName);
+        itemInfo.appendChild(itemPrice);
+
+        const itemQuantity = document.createElement("div");
+        itemQuantity.className = "cart-item-quantity";
+
+        const minusButton = document.createElement("button");
+        minusButton.type = "button";
+        minusButton.className = "cart-item-minus";
+        minusButton.dataset.productId = item.product.id;
+        minusButton.textContent = "−";
+
+        const quantityValue = document.createElement("span");
+        quantityValue.textContent = item.quantity;
+
+        const plusButton = document.createElement("button");
+        plusButton.type = "button";
+        plusButton.className = "cart-item-plus";
+        plusButton.dataset.productId = item.product.id;
+        plusButton.textContent = "+";
+
+        itemQuantity.appendChild(minusButton);
+        itemQuantity.appendChild(quantityValue);
+        itemQuantity.appendChild(plusButton);
+
+        const itemTotal = document.createElement("div");
+        itemTotal.className = "cart-item-total";
+        itemTotal.textContent = formatPrice(
+            item.product.price * item.quantity
+        );
+
+        cartItemElement.appendChild(itemInfo);
+        cartItemElement.appendChild(itemQuantity);
+        cartItemElement.appendChild(itemTotal);
+
         cartItems.appendChild(cartItemElement);
     });
 
