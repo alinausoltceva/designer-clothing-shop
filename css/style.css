@@ -478,6 +478,26 @@ h3 {
     text-transform: uppercase;
 }
 
+
+.footer-contact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-text-muted);
+    font-size: 13px;
+    transition: color var(--transition);
+}
+
+    .footer-contact:hover {
+        color: var(--color-text);
+    }
+
+    .footer-contact svg {
+        width: 17px;
+        height: 17px;
+        flex-shrink: 0;
+    }
+
 /* Cart modal */
 
 body.modal-open {
