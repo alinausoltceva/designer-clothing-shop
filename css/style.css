@@ -449,7 +449,7 @@ h3 {
     .about-link:hover {
         opacity: 0.55;
     }
-
+    
 
 /* Footer */
 
@@ -731,11 +731,16 @@ body.modal-open {
     color: #222;
     font: inherit;
     cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
 }
 
     .pagination-arrow:hover {
         background: #222;
         color: #fff;
+    }
+
+    .pagination-arrow:active:not(:disabled) {
+        transform: scale(0.92);
     }
 
     .pagination-arrow:disabled {
@@ -831,12 +836,16 @@ body.modal-open {
     font: inherit;
     font-size: 14px;
     cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
 }
 
     .filter-toggle-button:hover {
         background: #222;
         color: #fff;
+    }
+
+    .filter-toggle-button:active {
+        transform: scale(0.92);
     }
 
     .filter-toggle-button.has-active-filters {
